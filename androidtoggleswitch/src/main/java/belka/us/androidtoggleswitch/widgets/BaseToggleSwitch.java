@@ -63,17 +63,18 @@ public abstract class BaseToggleSwitch extends LinearLayout implements View.OnCl
 
     public BaseToggleSwitch(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        mContext = context;
+
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mInflater.inflate(R.layout.widget_toggle_switch, this, true);
+
+        toggleSwitchesContainer = (LinearLayout) findViewById(R.id.toggle_switches_container);
+
         if (attrs != null) {
             TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.ToggleSwitchOptions, 0, 0);
 
             try {
-                mContext = context;
-
-                mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                mInflater.inflate(R.layout.widget_toggle_switch, this, true);
-
-                toggleSwitchesContainer = (LinearLayout) findViewById(R.id.toggle_switches_container);
-
                 String centerToggleText = attributes.getString(R.styleable.ToggleSwitchOptions_textToggleCenter);
                 String leftToggleText = attributes.getString(R.styleable.ToggleSwitchOptions_textToggleLeft);
                 String rightToggleText = attributes.getString(R.styleable.ToggleSwitchOptions_textToggleRight);
